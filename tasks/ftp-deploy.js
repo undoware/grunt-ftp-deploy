@@ -80,9 +80,9 @@ module.exports = function(grunt) {
           } else {
             log.ok('New remote folder created ' + inPath.yellow);
           }
+          cb(null);
         });
-      }
-      cb(null);
+       } else { cb(null); }
     });
   }
 
