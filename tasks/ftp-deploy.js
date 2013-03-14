@@ -75,12 +75,11 @@ module.exports = function(grunt) {
       if(err){
         ftp.raw.mkd(inPath, function(err) {
           if(err) {
-            log.error('Error creating new remote folder ' + inPath + ' --> ' + err);
-            cb(err);
+            log.warn('Could not create new remote folder; perhaps it already exists? ' + inPath + ' --> ' + err);
           } else {
             log.ok('New remote folder created ' + inPath.yellow);
-            ftpCwd(inPath, cb);
           }
+          ftpCwd(inPath, cb);
         });
       } else {
         cb(null);
