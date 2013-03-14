@@ -73,17 +73,16 @@ module.exports = function(grunt) {
   function ftpCwd(inPath, cb) {
     ftp.raw.cwd(inPath, function(err) {
       if(err){
+        log.error('Could not change directory ' + inPath + ' --> ' + err);
         ftp.raw.mkd(inPath, function(err) {
           if(err) {
             log.warn('Could not create new remote folder; perhaps it already exists? ' + inPath + ' --> ' + err);
           } else {
             log.ok('New remote folder created ' + inPath.yellow);
           }
-          ftpCwd(inPath, cb);
         });
-      } else {
-        cb(null);
       }
+      cb(null);
     });
   }
 
